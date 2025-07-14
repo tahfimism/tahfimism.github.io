@@ -1,0 +1,1873 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Navigating Your ECE Journey: From First Year to Future Opportunities</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        /* Prevent horizontal overflow */
+        html, body {
+            overflow-x: hidden;
+        }
+        /* Ensure text wraps properly */
+        .prose p, .prose li, .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+        }
+        .font-serif { font-family: 'Crimson Text', serif; }
+        .font-sans { font-family: 'Inter', sans-serif; }
+        .hero-gradient { background: linear-gradient(135deg, #1e40af 0%, #3730a3 50%, #581c87 100%); }
+        .text-shadow { text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .glass-effect { backdrop-filter: blur(10px); background: rgba(255,255,255,0.1); }
+        .nav-fixed { position: fixed; top: 0; left: 0; width: 280px; height: 100vh; z-index: 40; }
+        .content-offset { margin-left: 280px; }
+        .nav-overlay { display: none; }
+        
+        /* Mermaid chart styling */
+        .mermaid-container {
+            display: flex;
+            justify-content: center;
+            min-height: 300px;
+            max-height: 800px;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Responsive adjustments for mermaid controls */
+        @media (max-width: 1024px) {
+            .mermaid-control-btn:not(.reset-zoom) {
+                display: none;
+            }
+            .mermaid-controls {
+                top: auto;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+
+        .mermaid-container .mermaid {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            cursor: grab;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .mermaid-container .mermaid svg {
+            max-width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .mermaid-container .mermaid:active {
+            cursor: grabbing;
+        }
+
+        .mermaid-container.zoomed .mermaid {
+            height: 100%;
+            width: 100%;
+            cursor: grab;
+        }
+
+        .mermaid-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mermaid-control-btn {
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #374151;
+            font-size: 14px;
+            min-width: 36px;
+            height: 36px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mermaid-control-btn:hover {
+            background: #f8fafc;
+            border-color: #3b82f6;
+            color: #3b82f6;
+            transform: translateY(-1px);
+        }
+
+        .mermaid-control-btn:active {
+            transform: scale(0.95);
+        }
+        
+        @media (max-width: 1024px) {
+            .nav-fixed { transform: translateX(-100%); transition: transform 0.3s ease; }
+            .nav-fixed.active { transform: translateX(0); }
+            .content-offset { margin-left: 0; }
+            .nav-overlay.active { display: block; }
+            
+            /* Responsive mermaid controls */
+            .mermaid-control-btn:not(.reset-zoom) {
+                display: none;
+            }
+            .mermaid-controls {
+                top: auto;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+        @media (max-width: 768px) {
+            /* Adjust the hero title for small screens */
+            #hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            /* Make the bento grid in hero single column */
+            #hero .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Adjust the grid gap in hero */
+            #hero .gap-8 {
+                gap: 1.5rem;
+            }
+            
+            /* Adjust the padding in key highlights boxes */
+            #hero .p-6 {
+                padding: 1.5rem;
+            }
+        }
+        @media (max-width: 640px) {
+            /* Further reduce the hero title font size */
+            #hero h1 {
+                font-size: 2rem;
+            }
+            
+            /* Adjust the padding in hero section */
+            #hero .px-6 {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            /* Adjust the padding in key highlights boxes */
+            #hero .p-6 {
+                padding: 1rem;
+            }
+            
+            /* Adjust the padding in Mermaid container */
+            .mermaid-container {
+                padding: 15px;
+            }
+        }
+        @media (max-width: 390px) {
+            /* Reduce hero title font size for very small screens */
+            #hero h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+  </head>
+
+  <body class="bg-gray-50 text-gray-900">
+    <!-- Fixed Navigation -->
+    <nav class="nav-fixed bg-white border-r border-gray-200 shadow-lg">
+      <div class="p-6">
+        <h2 class="text-lg font-semibold text-gray-900 mb-4">Table of Contents</h2>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <a href="#hero" class="text-blue-600 hover:text-blue-800 transition-colors">Introduction</a>
+          </li>
+          <li>
+            <a href="#section1" class="text-gray-700 hover:text-blue-600 transition-colors">1. Leveraging Your ECE Degree</a>
+          </li>
+          <li>
+            <a href="#section2" class="text-gray-700 hover:text-blue-600 transition-colors">2. MSc Opportunities</a>
+          </li>
+          <li>
+            <a href="#section3" class="text-gray-700 hover:text-blue-600 transition-colors">3. Entrepreneurial Mindset</a>
+          </li>
+          <li>
+            <a href="#section4" class="text-gray-700 hover:text-blue-600 transition-colors">4. Undergraduate Experience</a>
+          </li>
+          <li>
+            <a href="#section5" class="text-gray-700 hover:text-blue-600 transition-colors">5. AI Landscape</a>
+          </li>
+          <li>
+            <a href="#section6" class="text-gray-700 hover:text-blue-600 transition-colors">6. Strategic Planning</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content-offset">
+      <!-- Hero Section -->
+      <section id="hero" class="hero-gradient min-h-screen relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+          <div class="absolute top-20 left-20 w-32 h-32 bg-white rounded-full blur-xl"></div>
+          <div class="absolute bottom-20 right-20 w-48 h-48 bg-purple-300 rounded-full blur-2xl"></div>
+          <div class="absolute top-1/2 left-1/3 w-24 h-24 bg-blue-300 rounded-full blur-lg"></div>
+        </div>
+
+        <div class="relative z-10 container mx-auto px-6 py-20">
+          <!-- Hero Grid Layout -->
+          <div class="grid lg:grid-cols-3 gap-8 items-center min-h-[80vh]">
+            <!-- Main Title Area -->
+            <div class="lg:col-span-2 space-y-8">
+              <div class="space-y-4">
+                <h1 class="text-4xl sm:text-5xl lg:text-7xl font-serif text-white leading-tight text-shadow">
+                  <span class="italic">Navigating Your</span>
+                  <br/>
+                  <span class="font-semibold">ECE Journey</span>
+                </h1>
+                <p class="text-xl lg:text-2xl text-blue-100 font-light max-w-2xl">
+                  From First Year to Future Opportunities at KUET
+                </p>
+              </div>
+
+              <!-- Key Highlights Grid -->
+              <div class="grid md:grid-cols-2 gap-6 mt-12">
+                <div class="glass-effect rounded-xl p-6 border border-white/20">
+                  <div class="flex items-center space-x-3 mb-3">
+                    <i class="fas fa-microchip text-blue-300 text-xl"></i>
+                    <h3 class="text-white font-semibold">Versatile Foundation</h3>
+                  </div>
+                  <p class="text-blue-100 text-sm">ECE degree opens doors to diverse careers in industry, academia, and entrepreneurship</p>
+                </div>
+
+                <div class="glass-effect rounded-xl p-6 border border-white/20">
+                  <div class="flex items-center space-x-3 mb-3">
+                    <i class="fas fa-code text-purple-300 text-xl"></i>
+                    <h3 class="text-white font-semibold">Programming Edge</h3>
+                  </div>
+                  <p class="text-blue-100 text-sm">CS50 courses and AI interest provide competitive advantage in tech landscape</p>
+                </div>
+
+                <div class="glass-effect rounded-xl p-6 border border-white/20">
+                  <div class="flex items-center space-x-3 mb-3">
+                    <i class="fas fa-rocket text-green-300 text-xl"></i>
+                    <h3 class="text-white font-semibold">Entrepreneurial Spirit</h3>
+                  </div>
+                  <p class="text-blue-100 text-sm">KUET&#39;s ecosystem supports startup development and innovation</p>
+                </div>
+
+                <div class="glass-effect rounded-xl p-6 border border-white/20">
+                  <div class="flex items-center space-x-3 mb-3">
+                    <i class="fas fa-brain text-yellow-300 text-xl"></i>
+                    <h3 class="text-white font-semibold">AI Integration</h3>
+                  </div>
+                  <p class="text-blue-100 text-sm">Growing AI ecosystem in Bangladesh creates new opportunities</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Visual Element -->
+            <div class="lg:block">
+              <img src="https://kimi-web-img.moonshot.cn/img/wallpapers.com/9f588e02d393f190a769791d31261ba7caa10436.jpg" alt="Abstract electronic circuit pathways with glowing nodes" class="w-full h-auto rounded-2xl shadow-2xl opacity-80" size="large" aspect="wide" color="blue" style="photo" query="abstract electronic circuit pathways with glowing nodes" referrerpolicy="no-referrer" data-modified="1" data-score="11576.00"/>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Content Sections -->
+      <div class="container mx-auto px-6 py-16 space-y-20">
+
+        <!-- Section 1: Leveraging Your ECE Degree -->
+        <section id="section1" class="space-y-12">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl font-serif font-semibold text-gray-900 mb-4">Leveraging Your ECE Degree and Programming Skills</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">Your Electronics and Communication Engineering foundation opens doors to diverse opportunities in both hardware and software domains.</p>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-12 items-start">
+            <div class="space-y-8">
+              <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+                  <i class="fas fa-foundation text-blue-600 mr-3"></i>
+                  ECE as a Foundation for Diverse Careers
+                </h3>
+                <p class="text-gray-700 leading-relaxed mb-4">
+                  An Electronics and Communication Engineering degree offers a <strong>versatile foundation for a wide array of career paths</strong>, extending beyond traditional hardware-centric roles into software development, data science, and emerging technology fields.
+                </p>
+                <div class="space-y-3">
+                  <div class="flex items-start space-x-3">
+                    <div class="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
+                    <p class="text-gray-700">Covers analog/digital electronics, telecommunications, signal processing, embedded systems</p>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <div class="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
+                    <p class="text-gray-700">Applications in telecommunications, automotive, aerospace, medical electronics, and robotics</p>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <div class="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
+                    <p class="text-gray-700">Roles: Electronics Engineer, Embedded Systems Engineer, Signal Processing Engineer</p>
+                  </div>
+                </div>
+                <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+                  <p class="text-sm text-blue-800">
+                    <strong>Key Insight:</strong> The problem-solving and analytical thinking skills honed during an ECE degree are highly valued across various sectors <a href="https://eitfaridabad.com/blog/career-opportunities-for-electronics-and-communication-engineering-graduates/" class="text-blue-600 hover:underline" target="_blank">[2]</a>.
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+                  <i class="fas fa-code-branch text-purple-600 mr-3"></i>
+                  Transitioning to Programming and IT Roles
+                </h3>
+                <p class="text-gray-700 leading-relaxed mb-4">
+                  ECE graduates possess a strong foundation that can be effectively leveraged to transition into programming and IT roles. The curriculum inherently includes <strong>C, C++, Python, and MATLAB</strong> programming components.
+                </p>
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                  <div class="p-4 bg-purple-50 rounded-lg">
+                    <h4 class="font-semibold text-purple-900 mb-2">Embedded Systems</h4>
+                    <p class="text-sm text-purple-800">C/C++, Linux, RTOS, microcontrollers for automotive, aerospace, medical devices</p>
+                  </div>
+                  <div class="p-4 bg-purple-50 rounded-lg">
+                    <h4 class="font-semibold text-purple-900 mb-2">Software Development</h4>
+                    <p class="text-sm text-purple-800">Data structures, algorithms, computer networks fundamentals</p>
+                  </div>
+                </div>
+                <p class="text-gray-700 text-sm">
+                  Major IT corporations like <strong>Infosys, TCS, Wipro, Cognizant, Accenture, IBM, and Capgemini</strong> hire ECE freshers for various positions <a href="https://vlsifirst.com/blog/can-ece-student-get-job-in-it-company" class="text-purple-600 hover:underline" target="_blank">[77]</a>.
+                </p>
+              </div>
+            </div>
+
+            <div class="space-y-8">
+              <div class="bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl p-8 shadow-lg border border-gray-100">
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+                  <i class="fas fa-graduation-cap text-green-600 mr-3"></i>
+                  The Value of Your CS50 and AI Coursework
+                </h3>
+                <div class="space-y-4">
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                    <div>
+                      <h4 class="font-semibold text-gray-900">CS50 Foundation</h4>
+                      <p class="text-gray-700 text-sm">Computer science principles, programming paradigms, algorithms</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                    <div>
+                      <h4 class="font-semibold text-gray-900">CS50 Python &amp; Web</h4>
+                      <p class="text-gray-700 text-sm">Versatile programming language, web development, data analysis</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                    <div>
+                      <h4 class="font-semibold text-gray-900">CS50 AI (Planned)</h4>
+                      <p class="text-gray-700 text-sm">Machine learning, intelligent systems, AI applications</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-6 p-4 bg-white/80 rounded-lg">
+                  <p class="text-sm text-gray-800">
+                    This <strong>self-driven learning demonstrates initiative</strong> and a proactive approach to skill development, making you a more versatile and competitive candidate.
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">Career Pathways Map</h3>
+                <div class="mermaid-container">
+                  <div class="mermaid-controls">
+                    <button class="mermaid-control-btn zoom-in" title="放大">
+                      <i class="fas fa-search-plus"></i>
+                    </button>
+                    <button class="mermaid-control-btn zoom-out" title="缩小">
+                      <i class="fas fa-search-minus"></i>
+                    </button>
+                    <button class="mermaid-control-btn reset-zoom" title="重置">
+                      <i class="fas fa-expand-arrows-alt"></i>
+                    </button>
+                    <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                      <i class="fas fa-expand"></i>
+                    </button>
+                  </div>
+                  <div class="mermaid" id="mermaid-1">
+                    graph TD
+                    A[&#34;ECE Degree at KUET&#34;] --&gt; B[&#34;Core Technical Skills&#34;]
+                    A --&gt; C[&#34;Programming Foundation&#34;]
+                    B --&gt; D[&#34;Electronics Engineering&#34;]
+                    B --&gt; E[&#34;Telecommunications&#34;]
+                    B --&gt; F[&#34;Embedded Systems&#34;]
+                    C --&gt; G[&#34;Software Development&#34;]
+                    C --&gt; H[&#34;AI &amp; Machine Learning&#34;]
+                    D --&gt; I[&#34;Industry Roles&#34;]
+                    E --&gt; I
+                    F --&gt; I
+                    G --&gt; J[&#34;IT &amp; Tech Companies&#34;]
+                    H --&gt; J
+                    G --&gt; K[&#34;Startups &amp; Entrepreneurship&#34;]
+                    H --&gt; K
+                    I --&gt; L[&#34;Diverse Career Opportunities&#34;]
+                    J --&gt; L
+                    K --&gt; L
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 2: MSc Opportunities -->
+        <section id="section2" class="space-y-12">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl font-serif font-semibold text-gray-900 mb-4">Exploring MSc Opportunities: Local and International</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">Strategic pathways for advanced education in Bangladesh and abroad, including funding and admission considerations.</p>
+          </div>
+
+          <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Local MSc Options -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+              <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                  <i class="fas fa-university text-blue-600 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900">Local MSc Options</h3>
+              </div>
+
+              <div class="space-y-4">
+                <div class="p-4 bg-blue-50 rounded-lg">
+                  <h4 class="font-semibold text-blue-900 mb-2">KUET &amp; Bangladeshi Universities</h4>
+                  <ul class="text-sm text-blue-800 space-y-1">
+                    <li>• KUET: M.Sc. Eng. in ECE</li>
+                    <li>• BUET: ICT and Information Security</li>
+                    <li>• University of Dhaka: CSE, ICT</li>
+                    <li>• MIST: EECE, CSE programs</li>
+                  </ul>
+                </div>
+
+                <div class="space-y-2 text-sm">
+                  <div class="flex justify-between">
+                    <span class="text-gray-600">Duration:</span>
+                    <span class="font-medium">3-6 semesters</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-gray-600">Cost (MIST):</span>
+                    <span class="font-medium">~BDT 91,000</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-gray-600">Application Fee:</span>
+                    <span class="font-medium">BDT 1,000+</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+                <p class="text-xs text-gray-700">
+                  <strong>Source:</strong>
+                  <a href="https://www.kuet.ac.bd/program/pgdegree" class="text-blue-600 hover:underline" target="_blank">[59]</a>,
+                  <a href="https://iict.buet.ac.bd/?page_id=76" class="text-blue-600 hover:underline" target="_blank">[21]</a>,
+                  <a href="https://du.ac.bd/postGrad/cse" class="text-blue-600 hover:underline" target="_blank">[19]</a>
+                </p>
+              </div>
+            </div>
+
+            <!-- International MSc -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+              <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                  <i class="fas fa-globe text-green-600 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900">International MSc</h3>
+              </div>
+
+              <div class="space-y-4">
+                <div class="p-4 bg-green-50 rounded-lg">
+                  <h4 class="font-semibold text-green-900 mb-2">Popular Destinations</h4>
+                  <ul class="text-sm text-green-800 space-y-1">
+                    <li>• UK, USA, Canada</li>
+                    <li>• Australia, Europe</li>
+                    <li>• Specialized AI programs</li>
+                  </ul>
+                </div>
+
+                <div class="space-y-3">
+                  <div>
+                    <h5 class="font-medium text-gray-900 mb-1">Requirements:</h5>
+                    <ul class="text-sm text-gray-700 space-y-1">
+                      <li>• Good undergraduate degree (2:1 or 3.0/4.0 GPA)</li>
+                      <li>• English proficiency (IELTS 6.5+)</li>
+                      <li>• Strong SOP and recommendations</li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h5 class="font-medium text-gray-900 mb-1">Funding Options:</h5>
+                    <ul class="text-sm text-gray-700 space-y-1">
+                      <li>• University scholarships</li>
+                      <li>• Government programs</li>
+                      <li>• Education loans</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-6 p-4 bg-red-50 rounded-lg">
+                <p class="text-xs text-red-800">
+                  <strong>Cost Example:</strong> Imperial College AI MSc: £43,800 (overseas) vs £23,400 (home)
+                  <a href="https://www.imperial.ac.uk/study/courses/postgraduate-taught/2025/artificial-intelligence/" class="text-red-600 hover:underline" target="_blank">[30]</a>
+                </p>
+              </div>
+            </div>
+
+            <!-- Regional Options -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+              <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                  <i class="fas fa-map-marker-alt text-purple-600 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900">Regional Options</h3>
+              </div>
+
+              <div class="space-y-4">
+                <div class="p-4 bg-purple-50 rounded-lg">
+                  <h4 class="font-semibold text-purple-900 mb-2">South Asian University</h4>
+                  <ul class="text-sm text-purple-800 space-y-1">
+                    <li>• SAARC member institution</li>
+                    <li>• Country-wise quotas</li>
+                    <li>• Affordable fees</li>
+                    <li>• Hostel facilities</li>
+                  </ul>
+                </div>
+
+                <div class="p-4 bg-purple-50 rounded-lg">
+                  <h4 class="font-semibold text-purple-900 mb-2">Indian Institutions</h4>
+                  <ul class="text-sm text-purple-800 space-y-1">
+                    <li>• IITs, NITs, IISc</li>
+                    <li>• GATE exam required</li>
+                    <li>• M.Tech programs</li>
+                    <li>• Cultural proximity</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+                <p class="text-xs text-gray-700">
+                  <strong>Source:</strong>
+                  <a href="https://sau.int/admissions/masters-programmes/" class="text-purple-600 hover:underline" target="_blank">[28]</a>,
+                  <a href="https://www.shiksha.com/university/south-asian-university-delhi-35661/courses/msc-bc" class="text-purple-600 hover:underline" target="_blank">[27]</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: Entrepreneurship -->
+        <section id="section3" class="space-y-12">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl font-serif font-semibold text-gray-900 mb-4">Cultivating an Entrepreneurial Mindset</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">Leveraging your ECE skills for startup success with KUET&#39;s support ecosystem and national initiatives.</p>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-12">
+            <div class="space-y-8">
+              <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-8 shadow-lg border border-gray-100">
+                <h3 class="text-2xl font-semibold text-gray-900 mb-6 flex items-center">
+                  <i class="fas fa-lightbulb text-orange-600 mr-3"></i>
+                  Startup Potential for ECE Graduates
+                </h3>
+
+                <div class="space-y-6">
+                  <div>
+                    <h4 class="font-semibold text-gray-900 mb-3">Technical Foundation</h4>
+                    <div class="grid grid-cols-2 gap-3">
+                      <div class="flex items-center space-x-2">
+                        <i class="fas fa-microchip text-orange-600"></i>
+                        <span class="text-sm text-gray-700">Hardware Design</span>
+                      </div>
+                      <div class="flex items-center space-x-2">
+                        <i class="fas fa-code text-orange-600"></i>
+                        <span class="text-sm text-gray-700">Software Development</span>
+                      </div>
+                      <div class="flex items-center space-x-2">
+                        <i class="fas fa-signal text-orange-600"></i>
+                        <span class="text-sm text-gray-700">Signal Processing</span>
+                      </div>
+                      <div class="flex items-center space-x-2">
+                        <i class="fas fa-wifi text-orange-600"></i>
+                        <span class="text-sm text-gray-700">Communication Systems</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="p-4 bg-white/80 rounded-lg">
+                    <h4 class="font-semibold text-gray-900 mb-2">Startup Areas</h4>
+                    <ul class="text-sm text-gray-700 space-y-1">
+                      <li>• Embedded systems and IoT devices</li>
+                      <li>• Consumer electronics innovations</li>
+                      <li>• Telecommunications solutions</li>
+                      <li>• Robotics and AI-driven applications</li>
+                      <li>• Medical devices and smart home systems</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">Entrepreneurship Support at KUET</h3>
+
+                <div class="space-y-4">
+                  <div class="p-4 bg-blue-50 rounded-lg">
+                    <h4 class="font-semibold text-blue-900 mb-2">KUET Business and Entrepreneurship Club (KBEC)</h4>
+                    <p class="text-sm text-blue-800 mb-2">Organizes Hult Prize competitions and Case Crack challenges</p>
+                    <div class="text-xs text-blue-700">
+                      <strong>Success Story:</strong> Team Aperture won 2024 Hult Prize at KUET
+                      <a href="https://businessinspection.com.bd/kuet-hult-prize-2023-24-accelerates-social-innovation-among-engineering-students/" class="text-blue-600 hover:underline" target="_blank">[257]</a>
+                    </div>
+                  </div>
+
+                  <div class="p-4 bg-green-50 rounded-lg">
+                    <h4 class="font-semibold text-green-900 mb-2">University Innovation Hub Program (UIHP)</h4>
+                    <p class="text-sm text-green-800">Supported by Bangladesh Hi-Tech Park Authority</p>
+                    <ul class="text-xs text-green-700 mt-2 space-y-1">
+                      <li>• Innovation cohorts and certificate courses</li>
+                      <li>• Inter-university competitions</li>
+                      <li>• Ideation to commercialization support</li>
+                    </ul>
+                  </div>
+
+                  <div class="p-4 bg-purple-50 rounded-lg">
+                    <h4 class="font-semibold text-purple-900 mb-2">IT Training &amp; Incubation Center</h4>
+                    <p class="text-sm text-purple-800">Inaugurated December 2021, provides space and resources for startups</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-8">
+              <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                <h3 class="text-xl font-semibold text-gray-900 mb-6">National and International Competitions</h3>
+
+                <div class="space-y-6">
+                  <div class="border-l-4 border-orange-500 pl-4">
+                    <h4 class="font-semibold text-gray-900 mb-2">Hult Prize International</h4>
+                    <p class="text-sm text-gray-700 mb-2">Social entrepreneurship competition</p>
+                    <div class="flex items-center space-x-4 text-xs text-gray-600">
+                      <span><i class="fas fa-trophy text-orange-500"></i> $1M seed funding</span>
+                      <span><i class="fas fa-calendar text-orange-500"></i> Annual competition</span>
+                    </div>
+                  </div>
+
+                  <div class="border-l-4 border-blue-500 pl-4">
+                    <h4 class="font-semibold text-gray-900 mb-2">Bangladesh AI Summit &amp; Hackathon</h4>
+                    <p class="text-sm text-gray-700 mb-2">AI solutions for critical sectors</p>
+                    <div class="flex items-center space-x-4 text-xs text-gray-600">
+                      <span><i class="fas fa-money-bill text-blue-500"></i> 1 Lakh BDT prize</span>
+                      <span><i class="fas fa-users text-blue-500"></i> 70+ organizations</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl p-8 shadow-lg border border-gray-100">
+                <h3 class="text-xl font-semibold text-gray-900 mb-6">Government Support Initiatives</h3>
+
+                <div class="space-y-4">
+                  <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <i class="fas fa-hand-holding-usd text-white text-sm"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-semibold text-gray-900">Startup Bangladesh Limited</h4>
+                      <p class="text-sm text-gray-700">BDT 500 crores venture capital fund</p>
+                    </div>
+                  </div>
+
+                  <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <i class="fas fa-seedling text-white text-sm"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-semibold text-gray-900">Bangabandhu Innovation Grant (BIG)</h4>
+                      <p class="text-sm text-gray-700">Pre-seed grants for early-stage startups</p>
+                    </div>
+                  </div>
+
+                  <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <i class="fas fa-building text-white text-sm"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-semibold text-gray-900">Bangladesh Hi-Tech Park Authority</h4>
+                      <p class="text-sm text-gray-700">Largest agglomeration of IT companies</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-6 p-4 bg-white/80 rounded-lg">
+                  <p class="text-xs text-gray-700">
+                    <strong>Sources:</strong>
+                    <a href="https://ictd.portal.gov.bd/sites/default/files/files/ictd.portal.gov.bd/legislative_information/e0453bcf_eacc_4a85_8707_04dd45812984/Funding%20Guideline.pdf" class="text-green-600 hover:underline" target="_blank">[216]</a>,
+                    <a href="https://www.startupbangladesh.vc/about/about-who-we-are/" class="text-green-600 hover:underline" target="_blank">[219]</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4: Undergraduate Experience -->
+        <section id="section4" class="space-y-12">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl font-serif font-semibold text-gray-900 mb-4">Maximizing Your Undergraduate Experience at KUET</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">Strategically navigating academics, research, internships, and professional development opportunities.</p>
+          </div>
+
+          <div class="grid lg:grid-cols-4 gap-8">
+            <!-- Academic Excellence -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+              <div class="flex items-center mb-4">
+                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                  <i class="fas fa-graduation-cap text-blue-600"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900">Academic Excellence</h3>
+              </div>
+
+              <div class="space-y-4">
+                <div class="text-sm text-gray-700">
+                  <strong>Program Structure:</strong>
+                  <ul class="mt-2 space-y-1 text-xs">
+                    <li>• 4 years (8 terms)</li>
+                    <li>• 163 total credits</li>
+                    <li>• Major &amp; minor specializations</li>
+                  </ul>
+                </div>
+
+                <div class="text-sm text-gray-700">
+                  <strong>Core Subjects:</strong>
+                  <ul class="mt-2 space-y-1 text-xs">
+                    <li>• Digital Signal Processing</li>
+                    <li>• Microprocessors</li>
+                    <li>• Wireless Communications</li>
+                    <li>• VLSI Design</li>
+                  </ul>
+                </div>
+
+                <div class="text-sm text-gray-700">
+                  <strong>Optional Courses:</strong>
+                  <ul class="mt-2 space-y-1 text-xs">
+                    <li>• Computer Vision</li>
+                    <li>• Neural Networks</li>
+                    <li>• Database Systems</li>
+                    <li>• Multimedia Communications</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="mt-4 p-3 bg-blue-50 rounded-lg">
+                <p class="text-xs text-blue-800">
+                  <strong>Source:</strong>
+                  <a href="https://www.kuet.ac.bd/dept/ece/about/about" class="text-blue-600 hover:underline" target="_blank">[588]</a>,
+                  <a href="https://www.scribd.com/document/531669726/ECE-kuet" class="text-blue-600 hover:underline" target="_blank">[589]</a>
+                </p>
+              </div>
+            </div>
+
+            <!-- Internships -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+              <div class="flex items-center mb-4">
+                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                  <i class="fas fa-briefcase text-green-600"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900">Internships &amp; Industry</h3>
+              </div>
+
+              <div class="space-y-4">
+                <div class="p-3 bg-green-50 rounded-lg">
+                  <h4 class="font-medium text-green-900 text-sm mb-2">Benefits</h4>
+                  <ul class="text-xs text-green-800 space-y-1">
+                    <li>• Hands-on experience</li>
+                    <li>• Industry workflows</li>
+                    <li>• Professional network</li>
+                    <li>• Career path clarity</li>
+                  </ul>
+                </div>
+
+                <div class="text-sm text-gray-700">
+                  <strong>Opportunity Areas:</strong>
+                  <ul class="mt-2 space-y-1 text-xs">
+                    <li>• Software development</li>
+                    <li>• Data analysis &amp; AI research</li>
+                    <li>• IT consulting</li>
+                    <li>• R&amp;D teams</li>
+                  </ul>
+                </div>
+
+                <div class="text-sm text-gray-700">
+                  <strong>Support Systems:</strong>
+                  <ul class="mt-2 space-y-1 text-xs">
+                    <li>• Office of Student Welfare</li>
+                    <li>• KUET alumni network</li>
+                    <li>• Industry-academia events</li>
+                    <li>• Direct company recruitment</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="mt-4 p-3 bg-green-50 rounded-lg">
+                <p class="text-xs text-green-800">
+                  <strong>Example:</strong> Shanghai BDCOM recruits KUET ECE graduates for R&amp;D
+                  <a href="https://www.linkedin.com/posts/riyadhossain1991_kuet-cse-ece-activity-7276895162797072384-JGo-" class="text-green-600 hover:underline" target="_blank">[554]</a>
+                </p>
+              </div>
+            </div>
+
+            <!-- Research Projects -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+              <div class="flex items-center mb-4">
+                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                  <i class="fas fa-flask text-purple-600"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900">Research &amp; Projects</h3>
+              </div>
+
+              <div class="space-y-4">
+                <div class="text-sm text-gray-700">
+                  <strong>Faculty Research Areas:</strong>
+                  <ul class="mt-2 space-y-1 text-xs">
+                    <li>• Hypertension detection using ML</li>
+                    <li>• Lung cancer detection from CT</li>
+                    <li>• Signal and image processing</li>
+                    <li>• Biomedical engineering</li>
+                  </ul>
+                </div>
+
+                <div class="p-3 bg-purple-50 rounded-lg">
+                  <h4 class="font-medium text-purple-900 text-sm mb-2">Research Facilities</h4>
+                  <ul class="text-xs text-purple-800 space-y-1">
+                    <li>• MERC center (SEM, FESEM, XRD)</li>
+                    <li>• ECE department labs</li>
+                    <li>• Computer center</li>
+                  </ul>
+                </div>
+
+                <div class="text-sm text-gray-700">
+                  <strong>KUET Research Output:</strong>
+                  <p class="text-xs text-gray-600 mt-1">209 publications in Web of Science 2024, including Electrical Engineering and Computer Science</p>
+                </div>
+              </div>
+
+              <div class="mt-4 p-3 bg-purple-50 rounded-lg">
+                <p class="text-xs text-purple-800">
+                  <strong>Sources:</strong>
+                  <a href="https://sites.google.com/view/azmat-ece-kuet/profile" class="text-purple-600 hover:underline" target="_blank">[175]</a>,
+                  <a href="https://scientificbangladesh.com/research-trends-at-kuet-in-web-of-science-2024/" class="text-purple-600 hover:underline" target="_blank">[597]</a>
+                </p>
+              </div>
+            </div>
+
+            <!-- Networking -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+              <div class="flex items-center mb-4">
+                <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center mr-3">
+                  <i class="fas fa-network-wired text-orange-600"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900">Networking</h3>
+              </div>
+
+              <div class="space-y-4">
+                <div class="p-3 bg-orange-50 rounded-lg">
+                  <h4 class="font-medium text-orange-900 text-sm mb-2">KUET Alumni Network</h4>
+                  <ul class="text-xs text-orange-800 space-y-1">
+                    <li>• Global alumni associations</li>
+                    <li>• Career services &amp; mentorship</li>
+                    <li>• Industry connections</li>
+                    <li>• Internship opportunities</li>
+                  </ul>
+                </div>
+
+                <div class="text-sm text-gray-700">
+                  <strong>University Events:</strong>
+                  <ul class="mt-2 space-y-1 text-xs">
+                    <li>• EICT 2025 conference</li>
+                    <li>• Faculty seminars</li>
+                    <li>• Industry collaboration events</li>
+                    <li>• Career fairs</li>
+                  </ul>
+                </div>
+
+                <div class="text-sm text-gray-700">
+                  <strong>Professional Development:</strong>
+                  <ul class="mt-2 space-y-1 text-xs">
+                    <li>• KUET Career Club</li>
+                    <li>• Student welfare office</li>
+                    <li>• KUET job portal</li>
+                    <li>• Faculty mentorship</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="mt-4 p-3 bg-orange-50 rounded-lg">
+                <p class="text-xs text-orange-800">
+                  <strong>Sources:</strong>
+                  <a href="https://www.kuetiansmelbourne.com.au/index.html" class="text-orange-600 hover:underline" target="_blank">[600]</a>,
+                  <a href="https://www.kuet.ac.bd/" class="text-orange-600 hover:underline" target="_blank">[602]</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 5: AI Landscape -->
+        <section id="section5" class="space-y-12">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl font-serif font-semibold text-gray-900 mb-4">The AI Landscape in Bangladesh and Beyond</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">Understanding Bangladesh&#39;s growing AI ecosystem and its relevance to ECE careers and research.</p>
+          </div>
+
+          <div class="grid lg:grid-cols-3 gap-8">
+            <!-- National AI Ecosystem -->
+            <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 shadow-lg border border-gray-100">
+              <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mr-4">
+                  <i class="fas fa-flag text-white text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900">National AI Ecosystem</h3>
+              </div>
+
+              <div class="space-y-6">
+                <div class="p-4 bg-white/80 rounded-lg">
+                  <h4 class="font-semibold text-blue-900 mb-3">Government Initiatives</h4>
+                  <div class="space-y-3">
+                    <div class="flex items-start space-x-3">
+                      <i class="fas fa-file-alt text-blue-600 mt-1"></i>
+                      <div>
+                        <h5 class="font-medium text-gray-900 text-sm">National AI Policy 2024</h5>
+                        <p class="text-xs text-gray-700">Guidelines for AI governance and application across sectors</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                      <i class="fas fa-graduation-cap text-blue-600 mt-1"></i>
+                      <div>
+                        <h5 class="font-medium text-gray-900 text-sm">Academic Integration</h5>
+                        <p class="text-xs text-gray-700">AI curriculum, specialized programs, university AI labs</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                      <i class="fas fa-lightbulb text-blue-600 mt-1"></i>
+                      <div>
+                        <h5 class="font-medium text-gray-900 text-sm">Smart Bangladesh 2041</h5>
+                        <p class="text-xs text-gray-700">Vision emphasizing AI skills for economic growth</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="p-4 bg-blue-100 rounded-lg">
+                  <h4 class="font-semibold text-blue-900 mb-2">Key Events</h4>
+                  <div class="text-sm text-blue-800">
+                    <p><strong>Bangladesh AI Summit &amp; Hackathon:</strong></p>
+                    <ul class="text-xs mt-1 space-y-1">
+                      <li>• 70+ organizations participated</li>
+                      <li>• 177 groundbreaking AI ideas</li>
+                      <li>• Focus on city management, agriculture, healthcare</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-6 p-4 bg-white/80 rounded-lg">
+                <p class="text-xs text-gray-700">
+                  <strong>Sources:</strong>
+                  <a href="https://blogs.ifla.org/arl/2025/02/10/the-necessity-of-ai-literacy-in-academic-libraries-in-bangladesh/" class="text-blue-600 hover:underline" target="_blank">[213]</a>,
+                  <a href="https://bbf.digital/bangladesh-ai-summit-and-hackathon-propel-nations-digital-transformation" class="text-blue-600 hover:underline" target="_blank">[210]</a>
+                </p>
+              </div>
+            </div>
+
+            <!-- AI Companies -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+              <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                  <i class="fas fa-building text-green-600 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900">AI Companies in Bangladesh</h3>
+              </div>
+
+              <div class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="p-3 bg-green-50 rounded-lg">
+                    <h4 class="font-semibold text-green-900 text-sm mb-2">Established Players</h4>
+                    <ul class="text-xs text-green-800 space-y-1">
+                      <li>• eGeneration (2003)</li>
+                      <li>• Genex Infosys (2012)</li>
+                      <li>• Brain Station 23</li>
+                      <li>• Nascenia</li>
+                    </ul>
+                  </div>
+                  <div class="p-3 bg-green-50 rounded-lg">
+                    <h4 class="font-semibold text-green-900 text-sm mb-2">Emerging Startups</h4>
+                    <ul class="text-xs text-green-800 space-y-1">
+                      <li>• Intelsense (2018)</li>
+                      <li>• Sigmind.ai (2019)</li>
+                      <li>• Shothik AI (2023)</li>
+                      <li>• BullBear AI (2023)</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="p-4 bg-yellow-50 rounded-lg">
+                  <h4 class="font-semibold text-yellow-900 mb-2 text-sm">Government Support</h4>
+                  <p class="text-xs text-yellow-800">
+                    Startup Bangladesh invested in Shikho EdTech to accelerate AI-driven learning tools adoption
+                    <a href="https://meatechwatch.com/2025/05/08/startup-bangladesh-invests-in-shikho-to-accelerate-ai-driven-education-in-the-country/" class="text-yellow-600 hover:underline" target="_blank">[183]</a>
+                  </p>
+                </div>
+
+                <div class="p-4 bg-blue-50 rounded-lg">
+                  <h4 class="font-semibold text-blue-900 mb-2 text-sm">Focus Areas</h4>
+                  <div class="grid grid-cols-2 gap-2 text-xs text-blue-800">
+                    <div>• NLP &amp; Speech Recognition</div>
+                    <div>• Computer Vision</div>
+                    <div>• Conversational AI</div>
+                    <div>• Data Analytics</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+                <p class="text-xs text-gray-700">
+                  <strong>Sources:</strong>
+                  <a href="https://tracxn.com/d/explore/ai-services-startups-in-bangladesh/__kJk04cQOofPpMeZ1f6z_BaEsf90OTAhVbrAlLismTsc/companies" class="text-green-600 hover:underline" target="_blank">[182]</a>,
+                  <a href="https://www.goodfirms.co/artificial-intelligence/bangladesh" class="text-green-600 hover:underline" target="_blank">[647]</a>
+                </p>
+              </div>
+            </div>
+
+            <!-- AI Applications for ECE -->
+            <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 shadow-lg border border-gray-100">
+              <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center mr-4">
+                  <i class="fas fa-microchip text-white text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900">AI Applications for ECE</h3>
+              </div>
+
+              <div class="space-y-6">
+                <div class="p-4 bg-white/80 rounded-lg">
+                  <h4 class="font-semibold text-purple-900 mb-3">Relevant Research Areas</h4>
+                  <div class="space-y-3">
+                    <div class="flex items-start space-x-3">
+                      <i class="fas fa-heartbeat text-purple-600 mt-1"></i>
+                      <div>
+                        <h5 class="font-medium text-gray-900 text-sm">Biomedical Engineering</h5>
+                        <p class="text-xs text-gray-700">Lung cancer detection from CT, hypertension detection using ML</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                      <i class="fas fa-signal text-purple-600 mt-1"></i>
+                      <div>
+                        <h5 class="font-medium text-gray-900 text-sm">Signal Processing</h5>
+                        <p class="text-xs text-gray-700">Digital signal processing, image processing, pattern recognition</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                      <i class="fas fa-robot text-purple-600 mt-1"></i>
+                      <div>
+                        <h5 class="font-medium text-gray-900 text-sm">Intelligent Systems</h5>
+                        <p class="text-xs text-gray-700">Intelligent robotics, computer vision, neural networks</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="p-4 bg-purple-100 rounded-lg">
+                  <h4 class="font-semibold text-purple-900 mb-2">KUET Research Focus</h4>
+                  <ul class="text-sm text-purple-800 space-y-1 text-xs">
+                    <li>• Artificial/computational intelligence</li>
+                    <li>• Intelligent computer/sensor networking</li>
+                    <li>• Biomedical instrumentations</li>
+                    <li>• Data/text mining using big-data analytics</li>
+                  </ul>
+                </div>
+
+                <div class="p-4 bg-pink-100 rounded-lg">
+                  <h4 class="font-semibold text-pink-900 mb-2 text-sm">Practical Applications</h4>
+                  <ul class="text-xs text-pink-800 space-y-1">
+                    <li>• AI-powered CPAP machines (COVID-19 response)</li>
+                    <li>• Intelligent browsing for low-literacy populations</li>
+                    <li>• Bangla font conversion to Unicode</li>
+                    <li>• University system automation</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="mt-6 p-4 bg-white/80 rounded-lg">
+                <p class="text-xs text-gray-700">
+                  <strong>Sources:</strong>
+                  <a href="https://sites.google.com/view/azmat-ece-kuet/researches-projects" class="text-purple-600 hover:underline" target="_blank">[260]</a>,
+                  <a href="https://www.kuet.ac.bd/dept/eee/research/researcharea" class="text-purple-600 hover:underline" target="_blank">[274]</a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI Companies Table -->
+          <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 mt-12">
+            <h3 class="text-2xl font-semibold text-gray-900 mb-6 text-center">Overview of AI Companies and Startups in Bangladesh</h3>
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="bg-gray-50">
+                    <th class="text-left p-3 font-semibold text-gray-900">Company Name</th>
+                    <th class="text-left p-3 font-semibold text-gray-900">Founded</th>
+                    <th class="text-left p-3 font-semibold text-gray-900">Focus Area(s)</th>
+                    <th class="text-left p-3 font-semibold text-gray-900">Key Highlights</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                  <tr>
+                    <td class="p-3 font-medium text-gray-900">eGeneration</td>
+                    <td class="p-3 text-gray-700">2003</td>
+                    <td class="p-3 text-gray-700">AI, NLP, Computer Vision, Speech Recognition</td>
+                    <td class="p-3 text-gray-700">Provides omnichannel conversational experiences, deep learning ASR engine</td>
+                  </tr>
+                  <tr class="bg-gray-50">
+                    <td class="p-3 font-medium text-gray-900">Intelsense</td>
+                    <td class="p-3 text-gray-700">2018</td>
+                    <td class="p-3 text-gray-700">AI Solutions, Speech Processing, NLP, LLMs, CV</td>
+                    <td class="p-3 text-gray-700">Secured BDT 3 crore pre-seed funding (Nov 2024)</td>
+                  </tr>
+                  <tr>
+                    <td class="p-3 font-medium text-gray-900">Sigmind.ai</td>
+                    <td class="p-3 text-gray-700">2019</td>
+                    <td class="p-3 text-gray-700">Computer Vision, Video Data Extraction</td>
+                    <td class="p-3 text-gray-700">Extracts marketing insights from video; K-Startup investment</td>
+                  </tr>
+                  <tr class="bg-gray-50">
+                    <td class="p-3 font-medium text-gray-900">Shothik AI</td>
+                    <td class="p-3 text-gray-700">2023</td>
+                    <td class="p-3 text-gray-700">AI Writing Assistant</td>
+                    <td class="p-3 text-gray-700">Funding from Amazon, Google Cloud; $350K Conventional Debt</td>
+                  </tr>
+                  <tr>
+                    <td class="p-3 font-medium text-gray-900">Dodeed</td>
+                    <td class="p-3 text-gray-700">-</td>
+                    <td class="p-3 text-gray-700">Data Annotation and Tagging Services</td>
+                    <td class="p-3 text-gray-700">Helps accelerate AI development and reduce time to market</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="mt-4 p-4 bg-gray-50 rounded-lg">
+              <p class="text-xs text-gray-700">
+                <em>Table 1: Overview of Selected AI Companies and Startups in Bangladesh. Source: Various industry reports and company listings.</em>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 6: Strategic Planning -->
+        <section id="section6" class="space-y-12">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl font-serif font-semibold text-gray-900 mb-4">Strategic Planning for Your Future</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">Developing a flexible career strategy while building essential skills and professional networks.</p>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-12">
+            <div class="space-y-8">
+              <div class="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-2xl p-8 shadow-lg border border-gray-100">
+                <h3 class="text-2xl font-semibold text-gray-900 mb-6 flex items-center">
+                  <i class="fas fa-route text-indigo-600 mr-3"></i>
+                  Keeping Options Open
+                </h3>
+
+                <div class="space-y-6">
+                  <div class="p-4 bg-white/80 rounded-lg">
+                    <h4 class="font-semibold text-indigo-900 mb-3 flex items-center">
+                      <i class="fas fa-industry text-indigo-600 mr-2"></i>
+                      Industry Path
+                    </h4>
+                    <div class="space-y-2 text-sm text-gray-700">
+                      <div class="flex items-start space-x-2">
+                        <div class="w-2 h-2 bg-indigo-600 rounded-full mt-2 flex-shrink-0"></div>
+                        <p><strong>Core ECE Roles:</strong> Electronics design, telecommunications, embedded systems</p>
+                      </div>
+                      <div class="flex items-start space-x-2">
+                        <div class="w-2 h-2 bg-indigo-600 rounded-full mt-2 flex-shrink-0"></div>
+                        <p><strong>IT &amp; Software:</strong> Software development, data analysis, AI applications</p>
+                      </div>
+                      <div class="flex items-start space-x-2">
+                        <div class="w-2 h-2 bg-indigo-600 rounded-full mt-2 flex-shrink-0"></div>
+                        <p><strong>Key Sectors:</strong> Consumer electronics, automotive, healthcare, aerospace</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="p-4 bg-white/80 rounded-lg">
+                    <h4 class="font-semibold text-indigo-900 mb-3 flex items-center">
+                      <i class="fas fa-graduation-cap text-indigo-600 mr-2"></i>
+                      Academia Path
+                    </h4>
+                    <div class="space-y-2 text-sm text-gray-700">
+                      <div class="flex items-start space-x-2">
+                        <div class="w-2 h-2 bg-indigo-600 rounded-full mt-2 flex-shrink-0"></div>
+                        <p><strong>Advanced Degrees:</strong> MSc → PhD pathway</p>
+                      </div>
+                      <div class="flex items-start space-x-2">
+                        <div class="w-2 h-2 bg-indigo-600 rounded-full mt-2 flex-shrink-0"></div>
+                        <p><strong>Research Areas:</strong> Signal processing, communications, VLSI, AI integration</p>
+                      </div>
+                      <div class="flex items-start space-x-2">
+                        <div class="w-2 h-2 bg-indigo-600 rounded-full mt-2 flex-shrink-0"></div>
+                        <p><strong>Career Outcomes:</strong> Professor, researcher, R&amp;D specialist</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="p-4 bg-white/80 rounded-lg">
+                    <h4 class="font-semibold text-indigo-900 mb-3 flex items-center">
+                      <i class="fas fa-rocket text-indigo-600 mr-2"></i>
+                      Entrepreneurship Path
+                    </h4>
+                    <div class="space-y-2 text-sm text-gray-700">
+                      <div class="flex items-start space-x-2">
+                        <div class="w-2 h-2 bg-indigo-600 rounded-full mt-2 flex-shrink-0"></div>
+                        <p><strong>Startup Areas:</strong> IoT, AI applications, smart devices, embedded systems</p>
+                      </div>
+                      <div class="flex items-start space-x-2">
+                        <div class="w-2 h-2 bg-indigo-600 rounded-full mt-2 flex-shrink-0"></div>
+                        <p><strong>Support Systems:</strong> KUET incubation, government grants, competitions</p>
+                      </div>
+                      <div class="flex items-start space-x-2">
+                        <div class="w-2 h-2 bg-indigo-600 rounded-full mt-2 flex-shrink-0"></div>
+                        <p><strong>Key Skills:</strong> Technical expertise + business acumen</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-6 p-4 bg-indigo-100 rounded-lg">
+                  <p class="text-sm text-indigo-900">
+                    <strong>Strategic Approach:</strong> Actively seek experiences—projects, internships, competitions, networking—to explore these avenues and make informed decisions about your specialization.
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                <h3 class="text-xl font-semibold text-gray-900 mb-6">Continuous Learning Framework</h3>
+
+                <div class="space-y-4">
+                  <div class="border-l-4 border-blue-500 pl-4">
+                    <h4 class="font-semibold text-gray-900 mb-2">Online Learning Platforms</h4>
+                    <div class="grid grid-cols-2 gap-3 text-sm">
+                      <div class="flex items-center space-x-2">
+                        <i class="fas fa-external-link-alt text-blue-600"></i>
+                        <a href="https://www.coursera.org/articles/generative-ai-learning-path" class="text-blue-600 hover:underline" target="_blank">Coursera AI Courses</a>
+                      </div>
+                      <div class="flex items-center space-x-2">
+                        <i class="fas fa-laptop-code text-blue-600"></i>
+                        <span class="text-gray-700">CS50 Series</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="border-l-4 border-green-500 pl-4">
+                    <h4 class="font-semibold text-gray-900 mb-2">Skill Enhancement Areas</h4>
+                    <ul class="text-sm text-gray-700 space-y-1">
+                      <li>• AI/ML algorithms and tools</li>
+                      <li>• Programming languages (Python, C++)</li>
+                      <li>• Industry-specific technologies</li>
+                      <li>• Business and entrepreneurship skills</li>
+                    </ul>
+                  </div>
+
+                  <div class="border-l-4 border-purple-500 pl-4">
+                    <h4 class="font-semibold text-gray-900 mb-2">Learning Methods</h4>
+                    <ul class="text-sm text-gray-700 space-y-1">
+                      <li>• Online courses and specializations</li>
+                      <li>• Open-source project contributions</li>
+                      <li>• Webinars and workshops</li>
+                      <li>• Research paper reading</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-8">
+              <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-2xl p-8 shadow-lg border border-gray-100">
+                <h3 class="text-2xl font-semibold text-gray-900 mb-6 flex items-center">
+                  <i class="fas fa-briefcase text-green-600 mr-3"></i>
+                  Building Strong Portfolio
+                </h3>
+
+                <div class="space-y-6">
+                  <div class="p-4 bg-white/80 rounded-lg">
+                    <h4 class="font-semibold text-green-900 mb-3">Portfolio Components</h4>
+                    <div class="space-y-3">
+                      <div class="flex items-start space-x-3">
+                        <i class="fas fa-project-diagram text-green-600 mt-1"></i>
+                        <div>
+                          <h5 class="font-medium text-gray-900 text-sm">Academic Projects</h5>
+                          <p class="text-xs text-gray-700">KUET coursework, thesis work, research projects</p>
+                        </div>
+                      </div>
+                      <div class="flex items-start space-x-3">
+                        <i class="fas fa-code text-green-600 mt-1"></i>
+                        <div>
+                          <h5 class="font-medium text-gray-900 text-sm">Personal Projects</h5>
+                          <p class="text-xs text-gray-700">CS50 course projects, independent coding projects</p>
+                        </div>
+                      </div>
+                      <div class="flex items-start space-x-3">
+                        <i class="fas fa-handshake text-green-600 mt-1"></i>
+                        <div>
+                          <h5 class="font-medium text-gray-900 text-sm">Internship Outcomes</h5>
+                          <p class="text-xs text-gray-700">Industry projects, collaborative work</p>
+                        </div>
+                      </div>
+                      <div class="flex items-start space-x-3">
+                        <i class="fab fa-github text-green-600 mt-1"></i>
+                        <div>
+                          <h5 class="font-medium text-gray-900 text-sm">Open Source Contributions</h5>
+                          <p class="text-xs text-gray-700">GitHub repositories, collaborative coding</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="p-4 bg-green-100 rounded-lg">
+                    <h4 class="font-semibold text-green-900 mb-2">Portfolio Platforms</h4>
+                    <div class="grid grid-cols-2 gap-3 text-sm text-green-800">
+                      <div class="flex items-center space-x-2">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                      </div>
+                      <div class="flex items-center space-x-2">
+                        <i class="fas fa-globe"></i>
+                        <span>Personal Website</span>
+                      </div>
+                      <div class="flex items-center space-x-2">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn Profile</span>
+                      </div>
+                      <div class="flex items-center space-x-2">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Online Resume</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                <h3 class="text-xl font-semibold text-gray-900 mb-6">Professional Network Development</h3>
+
+                <div class="space-y-6">
+                  <div class="p-4 bg-blue-50 rounded-lg">
+                    <h4 class="font-semibold text-blue-900 mb-3">Networking Strategies</h4>
+                    <div class="space-y-2 text-sm text-blue-800">
+                      <div class="flex items-center space-x-2">
+                        <i class="fas fa-user-graduate text-blue-600"></i>
+                        <span>Engage with KUET faculty and researchers</span>
+                      </div>
+                      <div class="flex items-center space-x-2">
+                        <i class="fas fa-users text-blue-600"></i>
+                        <span>Join student clubs (KBEC, Career Club)</span>
+                      </div>
+                      <div class="flex items-center space-x-2">
+                        <i class="fas fa-calendar text-blue-600"></i>
+                        <span>Attend seminars and conferences</span>
+                      </div>
+                      <div class="flex items-center space-x-2">
+                        <i class="fab fa-linkedin text-blue-600"></i>
+                        <span>Connect with professionals online</span>
+                      </div>
+                      <div class="flex items-center space-x-2">
+                        <i class="fas fa-comments text-blue-600"></i>
+                        <span>Conduct informational interviews</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="p-4 bg-orange-50 rounded-lg">
+                    <h4 class="font-semibold text-orange-900 mb-2">KUET Alumni Network</h4>
+                    <p class="text-sm text-orange-800 mb-2">Global alumni associations offer:</p>
+                    <ul class="text-xs text-orange-700 space-y-1">
+                      <li>• Career services and mentorship</li>
+                      <li>• Industry connections and referrals</li>
+                      <li>• Internship and job opportunities</li>
+                      <li>• Professional development events</li>
+                    </ul>
+                  </div>
+
+                  <div class="p-4 bg-purple-50 rounded-lg">
+                    <h4 class="font-semibold text-purple-900 mb-2">Industry Engagement</h4>
+                    <p class="text-sm text-purple-800 mb-2">Direct company recruitment at KUET:</p>
+                    <ul class="text-xs text-purple-700 space-y-1">
+                      <li>• Shanghai BDCOM R&amp;D recruitment</li>
+                      <li>• EICT conference networking</li>
+                      <li>• KUET job portal access</li>
+                      <li>• Industry-academia collaboration</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl p-8 shadow-lg border border-gray-100">
+                <h3 class="text-xl font-semibold text-gray-900 mb-6 text-center">Your ECE Journey Roadmap</h3>
+                <div class="mermaid-container">
+                  <div class="mermaid-controls">
+                    <button class="mermaid-control-btn zoom-in" title="放大">
+                      <i class="fas fa-search-plus"></i>
+                    </button>
+                    <button class="mermaid-control-btn zoom-out" title="缩小">
+                      <i class="fas fa-search-minus"></i>
+                    </button>
+                    <button class="mermaid-control-btn reset-zoom" title="重置">
+                      <i class="fas fa-expand-arrows-alt"></i>
+                    </button>
+                    <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                      <i class="fas fa-expand"></i>
+                    </button>
+                  </div>
+                  <div class="mermaid" id="mermaid-2">
+                    timeline
+                    title &#34;Strategic ECE Career Development&#34;
+
+                    First Year : &#34;Core ECE Foundation&#34;
+                    : &#34;Programming Skills (CS50)&#34;
+                    : &#34;Explore Interests&#34;
+
+                    Second Year : &#34;Specialized Courses&#34;
+                    : &#34;Research Projects&#34;
+                    : &#34;Internship Applications&#34;
+
+                    Third Year : &#34;Industry Experience&#34;
+                    : &#34;Research Focus&#34;
+                    : &#34;Skill Enhancement&#34;
+
+                    Fourth Year : &#34;Thesis/Project&#34;
+                    : &#34;Job Applications&#34;
+                    : &#34;Advanced Studies Planning&#34;
+
+                    Beyond : &#34;Industry Career&#34;
+                    : &#34;Higher Studies&#34;
+                    : &#34;Entrepreneurship&#34;
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section class="bg-gradient-to-br from-blue-900 to-indigo-900 rounded-2xl p-12 text-white text-center">
+          <h2 class="text-3xl font-serif font-semibold mb-6">Your ECE Journey Awaits</h2>
+          <p class="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+            As a first-year ECE student at KUET, your journey is full of possibilities. Your ECE degree, combined with programming skills from CS50 and interest in AI, opens doors to diverse careers in industry, academia, or entrepreneurship, both in Bangladesh and potentially abroad.
+          </p>
+          <div class="grid md:grid-cols-4 gap-6 mb-8">
+            <div class="text-center">
+              <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                <i class="fas fa-microchip text-white text-2xl"></i>
+              </div>
+              <h3 class="font-semibold mb-2">Technical Foundation</h3>
+              <p class="text-sm text-blue-200">Strong ECE and programming base</p>
+            </div>
+            <div class="text-center">
+              <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                <i class="fas fa-brain text-white text-2xl"></i>
+              </div>
+              <h3 class="font-semibold mb-2">AI Integration</h3>
+              <p class="text-sm text-blue-200">Emerging skills in artificial intelligence</p>
+            </div>
+            <div class="text-center">
+              <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                <i class="fas fa-rocket text-white text-2xl"></i>
+              </div>
+              <h3 class="font-semibold mb-2">Entrepreneurship</h3>
+              <p class="text-sm text-blue-200">KUET support for innovation</p>
+            </div>
+            <div class="text-center">
+              <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                <i class="fas fa-globe text-white text-2xl"></i>
+              </div>
+              <h3 class="font-semibold mb-2">Global Opportunities</h3>
+              <p class="text-sm text-blue-200">Local and international pathways</p>
+            </div>
+          </div>
+          <p class="text-lg text-blue-100 font-medium">
+            Focus on academic excellence, engage in research and extracurriculars, build a strong portfolio, and continuously learn to navigate your path successfully.
+          </p>
+        </section>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="lg:hidden fixed top-4 left-4 z-50 bg-white p-3 rounded-lg shadow-lg" onclick="toggleNav()">
+      <i class="fas fa-bars text-gray-900"></i>
+    </button>
+
+    <!-- Overlay for mobile menu -->
+    <div id="nav-overlay" class="nav-overlay fixed inset-0 bg-black bg-opacity-50 z-40 hidden" onclick="toggleNav()"></div>
+
+    <script>
+        // Initialize Mermaid with custom configuration
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                primaryColor: '#3b82f6',
+                primaryTextColor: '#1f2937',
+                primaryBorderColor: '#e5e7eb',
+                lineColor: '#6b7280',
+                background: '#ffffff',
+                mainBkg: '#ffffff',
+                secondBkg: '#f9fafb',
+                tertiaryColor: '#f3f4f6',
+                fontFamily: 'Inter, sans-serif',
+                fontSize: '14px'
+            },
+            flowchart: {
+                useMaxWidth: false,
+                htmlLabels: true,
+                curve: 'basis'
+            },
+            timeline: {
+                useMaxWidth: false,
+                numberSectionStyles: 4
+            }
+        });
+
+        // Initialize Mermaid Controls for zoom and pan
+        function initializeMermaidControls() {
+            const containers = document.querySelectorAll('.mermaid-container');
+
+            containers.forEach(container => {
+            const mermaidElement = container.querySelector('.mermaid');
+            let scale = 1;
+            let isDragging = false;
+            let startX, startY, translateX = 0, translateY = 0;
+
+            // 触摸相关状态
+            let isTouch = false;
+            let touchStartTime = 0;
+            let initialDistance = 0;
+            let initialScale = 1;
+            let isPinching = false;
+
+            // Zoom controls
+            const zoomInBtn = container.querySelector('.zoom-in');
+            const zoomOutBtn = container.querySelector('.zoom-out');
+            const resetBtn = container.querySelector('.reset-zoom');
+            const fullscreenBtn = container.querySelector('.fullscreen');
+
+            function updateTransform() {
+                mermaidElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+
+                if (scale > 1) {
+                container.classList.add('zoomed');
+                } else {
+                container.classList.remove('zoomed');
+                }
+
+                mermaidElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+            }
+
+            if (zoomInBtn) {
+                zoomInBtn.addEventListener('click', () => {
+                scale = Math.min(scale * 1.25, 4);
+                updateTransform();
+                });
+            }
+
+            if (zoomOutBtn) {
+                zoomOutBtn.addEventListener('click', () => {
+                scale = Math.max(scale / 1.25, 0.3);
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateTransform();
+                });
+            }
+
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                scale = 1;
+                translateX = 0;
+                translateY = 0;
+                updateTransform();
+                });
+            }
+
+            if (fullscreenBtn) {
+                fullscreenBtn.addEventListener('click', () => {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                });
+            }
+
+            // Mouse Events
+            mermaidElement.addEventListener('mousedown', (e) => {
+                if (isTouch) return; // 如果是触摸设备，忽略鼠标事件
+
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                mermaidElement.style.cursor = 'grabbing';
+                updateTransform();
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging && !isTouch) {
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseleave', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            // 获取两点之间的距离
+            function getTouchDistance(touch1, touch2) {
+                return Math.hypot(
+                touch2.clientX - touch1.clientX,
+                touch2.clientY - touch1.clientY
+                );
+            }
+
+            // Touch Events - 触摸事件处理
+            mermaidElement.addEventListener('touchstart', (e) => {
+                isTouch = true;
+                touchStartTime = Date.now();
+
+                if (e.touches.length === 1) {
+                // 单指拖动
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+
+                } else if (e.touches.length === 2) {
+                // 双指缩放
+                isPinching = true;
+                isDragging = false;
+
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                initialDistance = getTouchDistance(touch1, touch2);
+                initialScale = scale;
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1 && isDragging && !isPinching) {
+                // 单指拖动
+                const touch = e.touches[0];
+                translateX = touch.clientX - startX;
+                translateY = touch.clientY - startY;
+                updateTransform();
+
+                } else if (e.touches.length === 2 && isPinching) {
+                // 双指缩放
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = getTouchDistance(touch1, touch2);
+
+                if (initialDistance > 0) {
+                    const newScale = Math.min(Math.max(
+                    initialScale * (currentDistance / initialDistance),
+                    0.3
+                    ), 4);
+                    scale = newScale;
+                    updateTransform();
+                }
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchend', (e) => {
+                // 重置状态
+                if (e.touches.length === 0) {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                // 延迟重置isTouch，避免鼠标事件立即触发
+                setTimeout(() => {
+                    isTouch = false;
+                }, 100);
+                } else if (e.touches.length === 1 && isPinching) {
+                // 从双指变为单指，切换为拖动模式
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+                }
+
+                updateTransform();
+            });
+
+            mermaidElement.addEventListener('touchcancel', (e) => {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                setTimeout(() => {
+                isTouch = false;
+                }, 100);
+
+                updateTransform();
+            });
+
+            // Enhanced wheel zoom with better center point handling
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const rect = container.getBoundingClientRect();
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                const newScale = Math.min(Math.max(scale * delta, 0.3), 4);
+
+                // Adjust translation to zoom towards center
+                if (newScale !== scale) {
+                const scaleDiff = newScale / scale;
+                translateX = translateX * scaleDiff;
+                translateY = translateY * scaleDiff;
+                scale = newScale;
+
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+
+                updateTransform();
+                }
+            });
+
+            // Initialize display
+            updateTransform();
+            });
+        }
+
+        // Initialize mermaid controls after mermaid renders
+        setTimeout(initializeMermaidControls, 1000);
+
+        // Mobile navigation toggle
+        function toggleNav() {
+            const nav = document.querySelector('.nav-fixed');
+            const overlay = document.getElementById('nav-overlay');
+            nav.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    if (window.innerWidth < 1024) {
+                        toggleNav();
+                    }
+                }
+            });
+        });
+
+        // Highlight active section in navigation
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-fixed a[href^="#"]');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-blue-600', 'font-semibold');
+                link.classList.add('text-gray-700');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.remove('text-gray-700');
+                    link.classList.add('text-blue-600', 'font-semibold');
+                }
+            });
+        });
+
+        // Close mobile menu when resizing to large screen
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 1024) {
+                const nav = document.querySelector('.nav-fixed');
+                const overlay = document.getElementById('nav-overlay');
+                nav.classList.remove('active');
+                overlay.classList.remove('active');
+            }
+        });
+    </script>
+  
+
+</body></html>
