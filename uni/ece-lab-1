@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Reader</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #a3a3a3;
+            font-family: 'Georgia', serif;
+        }
+        
+        .text-content {
+            line-height: 1.8;
+            word-wrap: break-word;
+        }
+        
+        .text-content p {
+            margin-bottom: 1em;
+        }
+        
+        .text-content ul, .text-content ol {
+            margin-left: 2em;
+            margin-bottom: 1em;
+        }
+        
+        .text-content li {
+            margin-bottom: 0.5em;
+        }
+        
+        .touch-area {
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.3s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-4xl">
+        <!-- Input Section -->
+        <div id="inputSection" class="space-y-4">
+            <h1 class="text-2xl font-light text-center mb-6">Text Reader</h1>
+            <textarea 
+                id="textInput" 
+                class="w-full h-64 p-4 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-gray-600 resize-none"
+                placeholder="Paste your text here..."
+            ></textarea>
+            <div class="flex justify-center">
+                <button 
+                    onclick="startReading()" 
+                    class="px-6 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors"
+                >
+                    Start Reading
+                </button>
+            </div>
+        </div>
+
+        <!-- Reading Section -->
+        <div id="readingSection" class="hidden">
+            <div class="fixed top-4 left-4 right-4 flex justify-between items-center">
+                <button 
+                    onclick="goBack()" 
+                    class="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors text-sm"
+                >
+                    ← Back
+                </button>
+                <div class="flex items-center space-x-4">
+                    <button onclick="decreaseFontSize()" class="px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded transition-colors">A-</button>
+                    <button onclick="increaseFontSize()" class="px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded transition-colors">A+</button>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-center min-h-screen">
+                <div class="text-center max-w-3xl w-full px-4">
+                    <div 
+                        id="contentDisplay" 
+                        class="text-content text-xl"
+                        style="font-size: 1.5rem;"
+                    ></div>
+                    
+                    <div class="mt-8">
+                        <button 
+                            id="nextButton" 
+                            class="px-8 py-4 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors touch-area"
+                            onclick="showNextChunk()"
+                        >
+                            Tap to Continue
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fixed bottom-4 left-4 right-4 text-center">
+                <div class="text-sm text-gray-500">
+                    <span id="progressText">0%</span> • Spacebar or tap to continue
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let textChunks = [];
+        let currentIndex = 0;
+        let fontSize = 1.5;
+
+        function splitIntoChunks(text) {
+            const chunks = [];
+            const paragraphs = text.split(/\n\n+/);
+            
+            for (const paragraph of paragraphs) {
+                if (paragraph.trim() === '') continue;
+                
+                // Handle lists
+                if (paragraph.match(/^[\s]*[-*•]|[\s]*\d+\./m)) {
+                    const listItems = paragraph.split(/\n(?=[-*•]|\d+\.)/);
+                    for (const item of listItems) {
+                        if (item.trim()) {
+                            chunks.push({ type: 'list-item', content: item.trim() });
+                        }
+                    }
+                } else {
+                    // Handle regular paragraphs
+                    const sentences = paragraph.match(/[^.!?]+[.!?]+/g) || [paragraph];
+                    
+                    for (let i = 0; i < sentences.length; i += 2) {
+                        const chunk = sentences.slice(i, i + 3).join('').trim();
+                        if (chunk) {
+                            chunks.push({ type: 'paragraph', content: chunk });
+                        }
+                    }
+                }
+            }
+            
+            return chunks;
+        }
+
+        function startReading() {
+            const text = document.getElementById('textInput').value;
+            if (!text.trim()) {
+                alert('Please enter some text first.');
+                return;
+            }
+            
+            textChunks = splitIntoChunks(text);
+            currentIndex = 0;
+            
+            document.getElementById('inputSection').classList.add('hidden');
+            document.getElementById('readingSection').classList.remove('hidden');
+            
+            showCurrentChunk();
+        }
+
+        function showCurrentChunk() {
+            if (currentIndex >= textChunks.length) {
+                document.getElementById('contentDisplay').innerHTML = 
+                    '<p class="text-gray-500">End of text</p>';
+                document.getElementById('nextButton').style.display = 'none';
+                return;
+            }
+            
+            const chunk = textChunks[currentIndex];
+            const display = document.getElementById('contentDisplay');
+            
+            // Preserve formatting
+            let content = chunk.content;
+            if (chunk.type === 'list-item') {
+                content = `<div style="margin-left: 2em;">${content}</div>`;
+            }
+            
+            display.innerHTML = `<div class="fade-in">${content}</div>`;
+            updateProgress();
+        }
+
+        function showNextChunk() {
+            if (currentIndex < textChunks.length) {
+                currentIndex++;
+                showCurrentChunk();
+            }
+        }
+
+        function showPreviousChunk() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showCurrentChunk();
+            }
+        }
+
+        function goBack() {
+            document.getElementById('readingSection').classList.add('hidden');
+            document.getElementById('inputSection').classList.remove('hidden');
+            document.getElementById('nextButton').style.display = 'inline-block';
+        }
+
+        function increaseFontSize() {
+            fontSize += 0.25;
+            document.getElementById('contentDisplay').style.fontSize = fontSize + 'rem';
+        }
+
+        function decreaseFontSize() {
+            if (fontSize > 1) {
+                fontSize -= 0.25;
+                document.getElementById('contentDisplay').style.fontSize = fontSize + 'rem';
+            }
+        }
+
+        function updateProgress() {
+            const progress = Math.round((currentIndex / textChunks.length) * 100);
+            document.getElementById('progressText').textContent = `${progress}%`;
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', (e) => {
+            if (!document.getElementById('readingSection').classList.contains('hidden')) {
+                if (e.code === 'Space') {
+                    e.preventDefault();
+                    showNextChunk();
+                } else if (e.key === 'ArrowLeft') {
+                    showPreviousChunk();
+                } else if (e.key === 'ArrowRight') {
+                    showNextChunk();
+                }
+            }
+        });
+
+        // Touch/swipe support
+        let touchStartX = 0;
+        let touchStartY = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            if (!document.getElementById('readingSection').classList.contains('hidden')) {
+                const touchEndX = e.changedTouches[0].clientX;
+                const touchEndY = e.changedTouches[0].clientY;
+                const deltaX = touchEndX - touchStartX;
+                const deltaY = touchEndY - touchStartY;
+
+                // Only respond to horizontal swipes
+                if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+                    if (deltaX > 0) {
+                        showPreviousChunk(); // Swipe right
+                    } else {
+                        showNextChunk(); // Swipe left
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
