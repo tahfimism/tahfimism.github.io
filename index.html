@@ -4,8 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tahfim's Portfolio</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 1rem;
+            display: flex;
+            gap: 1rem;
+            background: #f0f0f0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        section {
+            padding: 2rem;
+        }
+
+        footer {
+            background: #f0f0f0;
+            padding: 1rem;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+
     <h1>Tahfim's Portfolio</h1>
     <p>Personal site showcasing university projects, experiments, and notes.</p>
     <ul>
@@ -13,5 +46,50 @@
         <li><a href="Fibonacci">Fibonacci Visualizer</a></li>
         <li><a href="mindlexa">Mindlexa</a></li>
     </ul>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certificates">Certificates</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <h1>Welcome to Tahfim's Portfolio</h1>
+        <p>This is a short introduction. Future details about Tahfim will appear here.</p>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <ul>
+            <li><strong>ECE Roadmap:</strong> <a href="uni/ece-road.html">View details</a></li>
+            <li><strong>Fibonacci:</strong> <a href="Fibonacci">Coming soon</a></li>
+            <li><strong>Mindlexa:</strong> <a href="mindlexa">Coming soon</a></li>
+            <!-- Add more projects here -->
+        </ul>
+    </section>
+
+    <section id="certificates">
+        <h2>Certificates</h2>
+        <ul>
+            <li>Certificate One - Placeholder Provider (Year)</li>
+            <li>Certificate Two - Placeholder Provider (Year)</li>
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Have a question or want to connect? Reach out at <a href="mailto:email@example.com">email@example.com</a>.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Tahfim. <a href="https://github.com/tahfimism">GitHub</a></p>
+    </footer>
+
+
 </body>
 </html>
