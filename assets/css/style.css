@@ -1,0 +1,66 @@
+/* Basic styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* Navigation styles */
+nav {
+    background: #333;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav .nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: none;
+    flex-direction: column;
+}
+
+nav .nav-links li {
+    margin: 0.5rem 0;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#nav-toggle {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Responsive layout */
+@media (min-width: 768px) {
+    #nav-toggle {
+        display: none;
+    }
+    nav .nav-links {
+        display: flex;
+        flex-direction: row;
+    }
+    nav .nav-links li {
+        margin: 0 1rem;
+    }
+}
+
+nav.open .nav-links {
+    display: flex;
+}
+
+/* Section styling */
+section {
+    padding: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
