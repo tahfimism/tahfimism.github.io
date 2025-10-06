@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Products</title>
+  <style>
+    :root{--bg:#f7f7fa;--card:#fff;--muted:#666;--accent:#0b77ff}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;line-height:1.4;margin:0;background:var(--bg);color:#111}
+    .container{max-width:1100px;margin:32px auto;padding:0 16px}
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+    header h1{margin:0;font-size:1.25rem}
+  /* default: two columns when space allows; collapse to one on small screens */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .card{background:var(--card);border-radius:10px;padding:16px;box-shadow:0 6px 18px rgba(12,20,40,0.05);display:flex;flex-direction:column;gap:12px}
+  .media{height:220px;border-radius:8px;background:#eee;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .media img{width:100%;height:100%;object-fit:cover}
+    .title-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+    h2{font-size:1.05rem;margin:0}
+    p.desc{margin:0;color:var(--muted);font-size:0.95rem}
+    .notes{font-size:0.85rem;color:var(--muted);background:rgba(0,0,0,0.02);padding:8px;border-radius:6px}
+  .controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .btn-buy{background:var(--accent);color:#fff;padding:8px 14px;border-radius:8px;border:0;cursor:pointer;font-weight:700}
+  .btn-buy:active{transform:translateY(1px)}
+  .btn-buy[disabled]{opacity:0.6;cursor:not-allowed}
+    select{padding:8px;border-radius:6px;border:1px solid #ddd}
+    .price{font-weight:700;color:var(--accent);font-size:1.1rem}
+    footer{margin-top:18px;color:var(--muted);font-size:0.9rem}
+    @media (max-width:900px){
+      .grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:600px){
+      .grid{grid-template-columns:1fr}
+    }
+  @media (max-width:420px){.media{height:160px}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Featured Products</h1>
+      <div class="meta"><span id="product-count">0</span> products</div>
+    </header>
+
+    <main class="grid" id="products">
+      
+    </main>
+
+    <footer>
+      Tip: Choose a type to update the price. This page is a simple static demo.
+    </footer>
+  </div>
+
+  <script>
+    // ---- Product data (JSON) ----
+    const PRODUCTS = [
+      {
+        id: 'p1',
+        name: 'Dhaka Dusk',
+        desc: 'A warm, woody scent with notes of sandalwood, patchouli, and a hint of spice, evoking the energy of Dhaka at night.',
+        tags: ["woody", "leathery"],
+  img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='400'><rect width='100%' height='100%' fill='%23f2e6de'/></svg>",
+        types: [
+          { label: 'Travel Size (10ml)', min: 300, max: 400 },
+          { label: 'Standard Size (50ml)', min: 800, max: 1000 },
+          { label: 'Premium Size (100ml)', min: 1500, max: 1800 }
+        ]
+      },
+      {
+        id: 'p2',
+        name: 'Sylhet Bloom',
+        desc: 'A fresh, floral scent featuring white tea, citrus, and a unique Bangladeshi Jasmine variety.',
+        tags: ["floral", "spicy"],
+  img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='500'><rect width='100%' height='100%' fill='%23eafaf2'/></svg>",
+        types: [
+          { label: 'Travel Size (10ml)', min: 300, max: 400 },
+          { label: 'Standard Size (50ml)', min: 800, max: 1000 },
+          { label: 'Premium Size (100ml)', min: 1500, max: 1800 }
+        ]
+      },
+      {
+        id: 'p3',
+        name: 'Sundarbans Mist',
+        desc: 'An aquatic, refreshing scent blending marine notes, vetiver, and a subtle hint of mangrove.',
+        tags: ["woody", "leathery", "floral"],
+  img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='500'><rect width='100%' height='100%' fill='%23e8f7ff'/></svg>",
+        types: [
+          { label: 'Travel Size (10ml)', min: 300, max: 400 },
+          { label: 'Standard Size (50ml)', min: 800, max: 1000 },
+          { label: 'Premium Size (100ml)', min: 1500, max: 1800 }
+        ]
+      },
+      {
+        id: 'p4',
+        name: 'Rajshahi Spice',
+        desc: 'A sweet & spicy scent, incorporating Mango Blossom and Bengali Five Spice.',
+        tags: ["fruity", "spicy", "floral"],
+  img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='500'><rect width='100%' height='100%' fill='%23fff5ea'/></svg>",
+        types: [
+          { label: 'Travel Size (10ml)', min: 300, max: 400 },
+          { label: 'Standard Size (50ml)', min: 800, max: 1000 },
+          { label: 'Premium Size (100ml)', min: 1500, max: 1800 }
+        ]
+      }
+    ];
+
+  const container = document.getElementById('products');
+  const productCountEl = document.getElementById('product-count');
+  if (productCountEl) productCountEl.textContent = String(PRODUCTS.length);
+
+    function formatPrice(n){
+      if (Number.isNaN(Number(n))) return 'BDT 0';
+      return 'BDT ' + Number(n).toFixed(2);
+    }
+
+    function formatRange(range){
+      // range expected as "min-max" string, or a single number
+      if (typeof range !== 'string') range = String(range);
+      if (range.indexOf('-') > -1){
+        return 'BDT ' + range;
+      }
+      return formatPrice(range);
+    }
+
+    function renderProducts(list){
+      container.innerHTML = '';
+      list.forEach(prod => {
+        const el = document.createElement('article');
+        el.className = 'card';
+        el.dataset.productId = prod.id;
+
+        el.innerHTML = `
+          <div class="media"><img src="${prod.img}" alt="${escapeHtml(prod.name)}"></div>
+          <div>
+            <div class="title-row">
+              <h2>${escapeHtml(prod.name)}</h2>
+              <div class="price" data-price></div>
+            </div>
+            <p class="desc">${escapeHtml(prod.desc)}</p>
+          </div>
+          <div class="notes">${(prod.tags && prod.tags.length) ? 'Notes:   ' + prod.tags.map(escapeHtml).join(', ') : ''}</div>
+          <div class="controls">
+            <label class="vis">Type</label>
+            <select data-price-list>
+              ${prod.types.map(t => `<option value=\"${t.min}-${t.max}\">${escapeHtml(t.label)} — BDT ${t.min}-${t.max}</option>`).join('')}
+            </select>
+            <button data-buy class="btn-buy">Buy</button>
+          </div>
+        `;
+
+        // wire up events
+        const sel = el.querySelector('[data-price-list]');
+        const priceEl = el.querySelector('[data-price]');
+        const buyBtn = el.querySelector('[data-buy]');
+        function update(){ 
+          priceEl.textContent = formatRange(sel.value); 
+          // keep buy button label static ('Buy')
+        }
+        sel.addEventListener('change', update);
+        update();
+
+  buyBtn.addEventListener('click', () => buyProduct(prod.name, sel.value));
+  // ensure initial button label is 'Buy'
+  buyBtn.textContent = 'Buy';
+
+        container.appendChild(el);
+      });
+    }
+
+    function escapeHtml(s){
+      return String(s).replace(/[&<>\"]/g, function(c){
+        return {'&':'&amp;','<':'&lt;','>':'&gt;', '"':'&quot;'}[c];
+      });
+    }
+
+    function buyProduct(name, priceRange){
+      alert(`Thanks! You selected: ${name} — ${formatRange(priceRange)}\nProceed to checkout in a real store.`);
+    }
+
+    // Initial render
+    renderProducts(PRODUCTS);
+  </script>
+</body>
+</html>
